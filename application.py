@@ -35,12 +35,12 @@ def ingreso_datos():
 
 	for I in range(0,CANTIDAD):
 
-		pro+=1
+		PRO += 1
 
 		PRE = 0
 		INV = 0
 
-		print "Producto: "+ str(pro)
+		print "Producto: "+ str(PRO)
 
 		
 
@@ -89,10 +89,10 @@ def ingreso_datos():
 
 #OPCION 2: Aqui ingresamos a la funcion del cliente
 def cliente():
-	loop=True
-	comida=""
-	res="si"
-	subtotal=0
+	LOOP = True
+	COMIDA = ""
+	RES = "si"
+	SUBTOTAL = 0
 	
 	print U"\n                         **** Wall-Mart S.A © ****"
 	print u"                       Bienvenidos al área de compras:"
@@ -107,110 +107,110 @@ def cliente():
 
 
 	#Pedimos el ingreso de los productos
-	while res !="no":
-		res2="si"
-		while loop == True:
-			comida =raw_input("Ingrese Producto: ")
-			comida=comida.lower()
+	while RES !="no":
+		RES2 = "si"
+		while LOOP == True:
+			COMIDA =raw_input("Ingrese Producto: ")
+			COMIDA=COMIDA.lower()
 			try:
-				comida = float(comida)
-				comida = int(comida)
+				COMIDA = float(COMIDA)
+				COMIDA = int(COMIDA)
 				print "Error ingrese el nombre del Producto: \n"
 				pass
 
 			except(RuntimeError, TypeError, NameError, ValueError):
 				break
 
-		busqueda(comida)
+		busqueda(COMIDA)
 
-		if busqueda(comida) == 0:
+		if busqueda(COMIDA) == 0:
 			print "Producto No Encontrado\n"
 			pass
-		elif busqueda(comida) == 1:
+		elif busqueda(COMIDA) == 1:
 			print "Producto Encontrado\n"
 			
-			subtotal+=factura(comida)
-			COMPRAS.append(comida)
+			SUBTOTAL+=factura(COMIDA)
+			COMPRAS.append(COMIDA)
 			print COMPRAS
 			print CANT
-		while res2 != "no":
+		while RES2 != "no":
 
-			res=raw_input("Desea Elegir otro producto si/no \n")
-			res=res.lower()
+			RES=raw_input("Desea Elegir otro producto si/no \n")
+			RES=RES.lower()
 
 			try:
-				res=float(res)
-				res = int(res)
+				RES=float(RES)
+				RES = int(RES)
 				print "Error ingrese opcion válida: \n"
 			except(RuntimeError, TypeError, NameError, ValueError):
-				res=res
+				RES = RES
 
-			if res=="si":
+			if RES == "si":
 				break
-			elif res=="no":
+			elif RES == "no":
 				break
 
 	#print "SubTotal: "+ str(subtotal)
-	return subtotal	
+	return SUBTOTAL
 
 
 #Aqui mandamos a buscar el producto a la lista
-def busqueda(comida):
-	bus=0
-	if INVENTARIO.has_key(comida):
-		bus = 1
+def busqueda(COMIDA):
+	BUS = 0
+	if INVENTARIO.has_key(COMIDA):
+		BUS = 1
 	else:
-		bus = 0
+		BUS = 0
 
-	return bus
+	return BUS
 
 #Aqui calculamos los productos
-def factura(comida):
-	art=0
-	fac=0
-	if INVENTARIO[comida] > 0:
+def factura(COMIDA):
+	ART = 0
+	FAC = 0
+	if INVENTARIO[COMIDA] > 0:
 		print 'Si hay existencias'
 		art=input("Cuantos Desea: ")
 		print "Existencias: "
-		INVENTARIO[comida]=INVENTARIO[comida]-art
-		print INVENTARIO[comida]
-		fac=(PRECIO[comida]*art)
-		CANT.append(art)
+		INVENTARIO[COMIDA]=INVENTARIO[COMIDA]-ART
+		print INVENTARIO[COMIDA]
+		FAC =(PRECIO[COMIDA]*ART)
+		CANT.append(ART)
 
 	else:
 		print "No hay Existencias"
-		fac=0
+		FAC = 0
 	
-	return fac
+	return FAC
 
 #Aqui iniciamos con la factura del cliente
 def facturacion():
-	nombre=""
-	nit=""
-	totalpar=0
-	totalpag=0
-	totalfinal=0
-	tarjeta=0
-	tarj=""
-	total1=0
+	NOMBRE = ""
+	NIT = ""
+	TOTALPAR = 0
+	TOTALPAG = 0
+	TOTALFINAL = 0
+	TARJETA = 0
+	TARJ = ""
+	TOTAL1 = 0
 	
-	subtotal=cliente()
+	SUBTOTAL=cliente()
 	print U"\n                         **** Wall-Mart S.A © ****\n"
 	print u"                       Bienvenidos al área de facturacion: "
 	print "\n"
-	nombre=raw_input("Nombre: ")
-	nit=raw_input("NIT: ")
+	NOMBRE = raw_input("Nombre: ")
+	NIT = raw_input("NIT: ")
 	print "Calculando Factura..."
 
 
 	#print "		DESCRIPCION 	 CANTIDAD 	 PRECIO UNIT. 	  PARCIAL"
 	#for i in COMPRAS:
 	#	print str(PRECIO[i]) + " "+str(CANT[x1]) +" "+ str(PRECIO[COMPRAS]) +" "+ str(PARCIAL[x1]) 
-	totalpar=subtotal*0.12
+	TOTALPAR = SUBTOTAL*0.12
 
 	print "Factura No.: 0001 "
-	print "Nombre: " + nombre
-	print "NIT: "+ nit +"\n"
+	print "Nombre: " + NOMBRE
+	print "NIT: "+ NIT +"\n"
 
 	while True:
 		print "Modo de Pago: "
@@ -218,76 +218,74 @@ def facturacion():
 		print "2. Cliente Frecuente Silver "
 		print "3. Cliente Particular\n"
 
-		op=input("Ingresa una opción: ")
+		OP=input("Ingresa una opción: ")
 
-		if op == 1:
+		if OP == 1:
 			print "Cliente Gold: "
-			tarjeta=0.05
+			TARJETA = 0.05
 			break
-		elif op == 2:
+		elif OP == 2:
 			print "Cliente Silver: "
-			tarjeta=0.02
+			TARJETA = 0.02
 			break
-		elif op == 3:
+		elif OP == 3:
 			print "Cliente Particular: "
-			tarjeta=1
+			TARJETA = 1
 			break
 		else:
 			print "Ingrese opción válida\n"
 			time.sleep(2)
 			os.system("clear")
 
-	totalpag=subtotal+totalpar
-	total1=totalpag*tarjeta
-	totalfinal=totalpag-total1
+	TOTALPAG=SUBTOTAL+TOTALPAR
+	TOTAL1=TOTALPAG*TARJETA
+	TOTALFINAL=TOTALPAG-TOTAL1
 
-
-	print "SubTotal sin IVA:     Q. " + str(subtotal)
-	print "SubTotal con IVA:     Q. "+ str(totalpag)
-	print "Descuento de Cliente: Q. "+str(total1)
-	print "Total a Pagar:        Q. "+ str(totalfinal)
+	print "SubTotal sin IVA:     Q. " + str(SUBTOTAL)
+	print "SubTotal con IVA:     Q. "+ str(TOTALPAG)
+	print "Descuento de Cliente: Q. "+str(TOTAL1)
+	print "Total a Pagar:        Q. "+ str(TOTALFINAL)
 	return
 
 #MENU: Aqui va detallado el Menu de opciones
 def menu():
-	op=0
-	clave=0
-	loop=True
-	restriccion=0
-	restriccion2=0
+	OP = 0
+	CLAVE = 0
+	LOOP = True
+	RESTRICCION = 0
 	#print u"                              ***** Cognits *****"
 	
-	while loop==True:
+	while LOOP == True:
 		print U"\n                         **** Wall-Mart S.A © ****"
 		print "1. Ingresar a Gerencia "
 		print "2. Comprar y Facturar "
 		print "3. Salir\n"
 
-		op=input("Ingresa una opción: ")
+		OP = input("Ingresa una opción: ")
 
-		if op == 1:
+		if OP == 1:
 			print "Bienvenido Gerente: "
-			while clave != "KAR2014":
+			while CLAVE != "KAR2014":
 
-				clave=raw_input("Ingrese Contraseña: ")
+				CLAVE = raw_input("Ingrese Contraseña: ")
 
-				if clave== "KAR2014":
-					restriccion=1
+				if CLAVE == "KAR2014":
+					RESTRICCION=1
 					ingreso_datos()
 					break
-				elif clave=="salir":
+				elif CLAVE == "salir":
 					os.system("clear")
 					break
 				else: 
 					print u"Contraseña Invalida\n"
 
-		elif op== 2 and restriccion != 1:
+		elif OP == 2 and RESTRICCION != 1:
 			print "Error Ingreso de Datos Fallido\n"
 			time.sleep(3)
 			os.system("clear")
-		elif op == 2 and restriccion==1:
+		elif OP == 2 and RESTRICCION == 1:
 			facturacion()
-		elif op == 3:
+		elif OP == 3:
 			print "Gracias por su Compra.\nEsperamos que Vuelva...."
 			time.sleep(2)
 			os.system("cls")
